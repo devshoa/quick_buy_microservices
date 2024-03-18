@@ -1,7 +1,6 @@
 package com.devhoa.orderservice.service.impl;
 
 import com.devhoa.orderservice.dto.request.OrderRequest;
-import com.devhoa.orderservice.dto.response.ApiResponse;
 import com.devhoa.orderservice.dto.response.InventoryResponseDTO;
 import com.devhoa.orderservice.dto.response.OrderResponseDTO;
 import com.devhoa.orderservice.dto.response.mapper.OrderDTOMapper;
@@ -27,7 +26,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderLineItemsDtoMapper orderLineItemsDtoMapper;
     private final OrderDTOMapper orderDtoMapper;
     private final OrderRepository orderRepository;
-    private final WebClient webClient;
+    private final WebClient.Builder webClientBuilder;
 
     @Override
     public OrderResponseDTO placeOrder(OrderRequest orderRequest) {
@@ -44,8 +43,8 @@ public class OrderServiceImpl implements OrderService {
         // thu thập tất cả các sku-code
         List<String> skuCodes = order.getOrderLineItemsList().stream().map(OrderLineItems::getSkuCode).toList();
 
-        InventoryResponseDTO[] inventoryResponseDTOS = webClient.get()
-                .uri("http://localhost:8082/api/v1/inventory",
+        InventoryResponseDTO[] inventoryResponseDTOS = webClientBuilder.build().get()
+                .uri("http://inventory-service/api/v1/inventory",
                         uriBuilder -> uriBuilder.queryParam("skuCodes", skuCodes).build())
                 .retrieve()
                 .bodyToMono(InventoryResponseDTO[].class)

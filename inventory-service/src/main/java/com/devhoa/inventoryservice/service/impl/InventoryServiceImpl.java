@@ -23,16 +23,15 @@ public class InventoryServiceImpl implements InventoryService {
         int skuReq = skuCode.size();
         List<Inventory> inventories = inventoryRepository.findBySkuCodeIn(skuCode);
         int skuRes = inventories.size();
+        if(skuReq != skuRes) {
+            throw new IllegalArgumentException("Sku code not valid");
+        }
         List<InventoryResponseDTO> results = new ArrayList<>();
         for (Inventory inventory : inventories) {
-            if (skuReq != skuRes) {
-                throw new IllegalArgumentException("Sku code not valid");
-            } else {
-                results.add(InventoryResponseDTO.builder()
-                        .skuCode(inventory.getSkuCode())
-                        .isInStock(inventory.getQuantity() > 0)
-                        .build());
-            }
+            results.add(InventoryResponseDTO.builder()
+                    .skuCode(inventory.getSkuCode())
+                    .isInStock(inventory.getQuantity() > 0)
+                    .build());
         }
         return results;
 
