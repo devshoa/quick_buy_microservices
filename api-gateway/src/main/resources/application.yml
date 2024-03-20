@@ -29,5 +29,26 @@ spring:
         id: order-service
         uri: lb://order-service
         predicates[0]: Path=/api/v1/order
+
+      # Discovery Server Route
+      routes[2]:
+        id: discovery-server
+        uri: http://localhost:8761
+        predicates[0]: Path=/eureka/web
+        filters[0]: SetPath=/
+
+      # Discovery Server Static Resource
+      routes[3]:
+        id: discovery-server
+        uri: http://localhost:8761
+        predicates[0]: Path=/eureka/**
+
+
   application:
     name: api-gateway
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8181/realms/spring-boot-microservices-realm
