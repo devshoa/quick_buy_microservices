@@ -2,22 +2,30 @@
   <profile version="1.0">
     <option name="myName" value="Project Default" />
     <inspection_tool class="MarkedForRemoval" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="SpringBootApplicationYaml" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="UNCHECKED_WARNING" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="VulnerableLibrariesLocal" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="isIgnoringEnabled" value="true" />
       <option name="ignoredModules">
         <list>
           <option value="api-gateway" />
           <option value="api-gateway" />
+          <option value="discovery-server" />
+          <option value="discovery-server" />
         </list>
       </option>
       <option name="ignoredPackages">
         <list>
           <option value="org.springframework.security:spring-security-core:6.2.2" />
           <option value="org.springframework:spring-web:6.1.4" />
+          <option value="org.springframework.security:spring-security-core:6.2.2" />
+          <option value="org.springframework:spring-web:6.1.4" />
         </list>
       </option>
       <option name="ignoredReasons">
         <list>
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
           <option value="Not exploitable" />
           <option value="Not exploitable" />
         </list>

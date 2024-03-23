@@ -22,6 +22,8 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_id_sequence")
     private Integer id;
     private String name;
+
+    @Column(name = "description", columnDefinition = "VARCHAR(1000)")
     private String description;
     private BigDecimal price;
 

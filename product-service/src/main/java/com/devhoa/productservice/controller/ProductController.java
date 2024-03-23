@@ -17,7 +17,7 @@ public class ProductController {
 
     private final ProductService productService;
 
-    @PostMapping("/create")
+    @PostMapping
     public ApiResponse<ProductResponseDTO> createProduct(@RequestBody ProductRequest products) {
         ProductResponseDTO productResponseDTO = productService.createProduct(products);
         return new ApiResponse<>(
