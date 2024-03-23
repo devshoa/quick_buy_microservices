@@ -1,7 +1,6 @@
 eureka:
   client:
     serviceUrl:
-      # provide password to eureka
       defaultZone: http://eureka:password@localhost:8761/eureka
 
 
